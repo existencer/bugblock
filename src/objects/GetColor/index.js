@@ -3,9 +3,10 @@ function getColor (words, index) {
   if (words[0] === words[words.length - 1] && words[0] === "'") {
     return '#e6db74'
   }
-  if (words[0] === "(" && words[words.length - 1] === ")") {
-    if (index !== 0 && index !== words.length - 1)
-    return '#f0971f'
+  if (words[0] === '(' && words[words.length - 1] === ')') {
+    if (index !== 0 && index !== words.length - 1) {
+      return '#f0971f'
+    }
   }
   if (symbol2color[words[index]]) {
     return symbol2color[words[index]]

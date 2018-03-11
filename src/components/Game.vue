@@ -1,6 +1,9 @@
 <template>
   <div id="game">
     <div id="game-box">
+      <div id="run-time">
+        <div class="lines" :style="{'transform': `translateY(${focusLine * 30}px)`}"></div>
+      </div>
       <div id="game-code-box">
         <div v-for="line in codeLists" :key="codeLists.indexOf(line)" class="line">
           <div v-for="code in line" :key="line.indexOf(code)" class="code">
@@ -12,6 +15,9 @@
       <div id="baffle" :style="{'height': `${baffleLength}px`}"></div>
       <div id="animate-code"></div>
       <canvas id="test" width="1200" height="800"></canvas>
+    </div>
+    <div id="light">
+      <div class="point" :style="{'transform': `translateY(${focusLine * 30}px)`}"></div>
     </div>
     <p id="game-life"><span style="float: left">score: {{score}}</span><span style="float: right">life: {{life}}</span></p>
   </div>
@@ -66,7 +72,8 @@ export default {
       codeLists: [],
       pointList: [],
       isGameOver: false,
-      score: 0
+      score: 0,
+      focusLine: 0
     }
   },
   mounted () {
@@ -79,6 +86,12 @@ export default {
     this.$el.addEventListener('mousedown', (e) => {
       this.isPause = false
     })
+    setInterval(() => {
+      this.focusLine++
+      if (!this.rectLists['line_' + this.focusLine]) {
+        this.focusLine = 0
+      }
+    }, 2000)
     requestAnimationFrame(this.animate)
   },
   methods: {
@@ -425,5 +438,30 @@ export default {
   width: 11px;
   display: block;
   float: left;
+}
+#run-time {
+  position: absolute;
+  top: 10px;
+  left: 0;
+}
+#run-time .lines {
+  height: 30px;
+  width: 1000px;
+  background-color: #3e3d32;
+}
+#light {
+  position: absolute;
+  top: 70px;
+  left: -510px;
+  transform: translateX(50vw);
+}
+#light .point {
+  width: 20px;
+  height: 20px;
+  background-color: #587c0c;
+  position: absolute;
+  left: -40px;
+  top: 5px;
+  border-radius: 10px;
 }
 </style>
