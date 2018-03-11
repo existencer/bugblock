@@ -362,11 +362,30 @@ export default {
   top: 290px;
 }
 #baffle {
-  width: 10px;
+  width: 4px;
+  margin: 0 3px;
   background-color: white;
   position: absolute;
   right: 20px;
   top: 270px;
+}
+#baffle:before {
+  content: '';
+  width: 10px;
+  height: 4px;
+  position: absolute;
+  top: 0;
+  left: -3px;
+  background-color: white;
+}
+#baffle:after {
+  content: '';
+  width: 10px;
+  height: 4px;
+  position: absolute;
+  bottom: 0;
+  left: -3px;
+  background-color: white;
 }
 #test {
   position: absolute;
